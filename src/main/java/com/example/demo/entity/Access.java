@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-public class AccessControl {
+public class Access {
     private Integer accessId;
 
     private String accessName;

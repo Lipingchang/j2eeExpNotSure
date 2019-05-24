@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ChannelMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Channel">
+    <id column="Channel_id" jdbcType="INTEGER" property="channelId" />
+    <result column="Channel_title" jdbcType="VARCHAR" property="channelTitle" />
+    <result column="Channel_desc" jdbcType="VARCHAR" property="channelDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Channel_id, Channel_title, Channel_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from channel
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Channel">
+    insert into channel (Channel_id, Channel_title, Channel_desc
+      )
+    values (#{channelId,jdbcType=INTEGER}, #{channelTitle,jdbcType=VARCHAR}, #{channelDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Channel">
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        Channel_id,
+      </if>
+      <if test="channelTitle != null">
+        Channel_title,
+      </if>
+      <if test="channelDesc != null">
+        Channel_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="channelTitle != null">
+        #{channelTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        #{channelDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Channel">
+    update channel
+    <set>
+      <if test="channelTitle != null">
+        Channel_title = #{channelTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        Channel_desc = #{channelDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Channel">
+    update channel
+    set Channel_title = #{channelTitle,jdbcType=VARCHAR},
+      Channel_desc = #{channelDesc,jdbcType=VARCHAR}
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Channel">
+    <id column="Channel_id" jdbcType="INTEGER" property="channelId" />
+    <result column="Channel_title" jdbcType="VARCHAR" property="channelTitle" />
+    <result column="Channel_desc" jdbcType="VARCHAR" property="channelDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Channel_id, Channel_title, Channel_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from channel
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Channel">
+    insert into channel (Channel_id, Channel_title, Channel_desc
+      )
+    values (#{channelId,jdbcType=INTEGER}, #{channelTitle,jdbcType=VARCHAR}, #{channelDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Channel">
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        Channel_id,
+      </if>
+      <if test="channelTitle != null">
+        Channel_title,
+      </if>
+      <if test="channelDesc != null">
+        Channel_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="channelId != null">
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="channelTitle != null">
+        #{channelTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        #{channelDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Channel">
+    update channel
+    <set>
+      <if test="channelTitle != null">
+        Channel_title = #{channelTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        Channel_desc = #{channelDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Channel">
+    update channel
+    set Channel_title = #{channelTitle,jdbcType=VARCHAR},
+      Channel_desc = #{channelDesc,jdbcType=VARCHAR}
+    where Channel_id = #{channelId,jdbcType=INTEGER}
+  </update>
+</mapper>
