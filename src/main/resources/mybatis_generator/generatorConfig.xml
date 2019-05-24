@@ -23,7 +23,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.example.demo.entity.xml"
+        <sqlMapGenerator targetPackage="com.example.demo.mapper.xml"
                          targetProject="E:\javaEE_workspace\CombinedJ2ee\javaCode\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
