@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AccessControlMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.AccessControl">
+    <id column="access_id" jdbcType="INTEGER" property="accessId" />
+    <result column="access_name" jdbcType="VARCHAR" property="accessName" />
+    <result column="access_decs" jdbcType="VARCHAR" property="accessDecs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    access_id, access_name, access_decs
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from access
+    where access_id = #{accessId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from access
+    where access_id = #{accessId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.AccessControl">
+    insert into access (access_id, access_name, access_decs
+      )
+    values (#{accessId,jdbcType=INTEGER}, #{accessName,jdbcType=VARCHAR}, #{accessDecs,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.AccessControl">
+    insert into access
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accessId != null">
+        access_id,
+      </if>
+      <if test="accessName != null">
+        access_name,
+      </if>
+      <if test="accessDecs != null">
+        access_decs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accessId != null">
+        #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="accessName != null">
+        #{accessName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessDecs != null">
+        #{accessDecs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.AccessControl">
+    update access
+    <set>
+      <if test="accessName != null">
+        access_name = #{accessName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessDecs != null">
+        access_decs = #{accessDecs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where access_id = #{accessId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.AccessControl">
+    update access
+    set access_name = #{accessName,jdbcType=VARCHAR},
+      access_decs = #{accessDecs,jdbcType=VARCHAR}
+    where access_id = #{accessId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.AccessControl">
+    <result column="access_id" jdbcType="INTEGER" property="accessId" />
+    <result column="access_name" jdbcType="VARCHAR" property="accessName" />
+    <result column="access_decs" jdbcType="VARCHAR" property="accessDecs" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.entity.AccessControl">
+    insert into access (access_id, access_name, access_decs
+      )
+    values (#{accessId,jdbcType=INTEGER}, #{accessName,jdbcType=VARCHAR}, #{accessDecs,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.AccessControl">
+    insert into access
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accessId != null">
+        access_id,
+      </if>
+      <if test="accessName != null">
+        access_name,
+      </if>
+      <if test="accessDecs != null">
+        access_decs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accessId != null">
+        #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="accessName != null">
+        #{accessName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessDecs != null">
+        #{accessDecs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
