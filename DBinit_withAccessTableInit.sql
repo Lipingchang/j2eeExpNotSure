@@ -27,11 +27,11 @@ create table Access
    primary key (access_id)
 );
 
-insert into Access (access_name,access_decs) values ('ÈËÔ±¹ÜÀí','¿ÉÒÔĞŞ¸ÄÈËÔ±µÄAccessÊôĞÔ');
-insert into Access (access_name,access_decs) values ('Ìí¼ÓÎÄÕÂ','¿ÉÒÔÌí¼ÓÎÄÕÂ');
-insert into Access (access_name,access_decs) values ('±à¼­ÎÄÕÂ','¿ÉÒÔ±à¼­ÒÑ´æÔÚµÄÎÄÕÂ');
-insert into Access (access_name,access_decs) values ('É¾³ıÎÄÕÂ','¿ÉÒÔÉ¾³ıÒÑ´æÔÚµÄÎÄÕÂ');
-insert into Access (access_name,access_decs) values ('ä¯ÀÀÎÄÕÂ','¿ÉÒÔä¯ÀÀÎÄÕÂÄÚÈİ');
+insert into Access (access_name,access_decs) values ('äººå‘˜ç®¡ç†','å¯ä»¥ä¿®æ”¹äººå‘˜çš„Accesså±æ€§');
+insert into Access (access_name,access_decs) values ('æ·»åŠ æ–‡ç« ','å¯ä»¥æ·»åŠ æ–‡ç« ');
+insert into Access (access_name,access_decs) values ('ç¼–è¾‘æ–‡ç« ','å¯ä»¥ç¼–è¾‘å·²å­˜åœ¨çš„æ–‡ç« ');
+insert into Access (access_name,access_decs) values ('åˆ é™¤æ–‡ç« ','å¯ä»¥åˆ é™¤å·²å­˜åœ¨çš„æ–‡ç« ');
+insert into Access (access_name,access_decs) values ('æµè§ˆæ–‡ç« ','å¯ä»¥æµè§ˆæ–‡ç« å†…å®¹');
 
 /*==============================================================*/
 /* Table: Article                                               */
