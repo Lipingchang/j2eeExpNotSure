@@ -11,6 +11,17 @@
   <sql id="Base_Column_List" >
     article_id, person_id, article_title, article_editor, article_content
   </sql>
+  <resultMap id="toChannel" type="com.example.demo.entity.Channel">
+    <id column="Channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="Channel_title" property="channelTitle" jdbcType="VARCHAR" />
+    <result column="Channel_desc" property="channelDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectAllChannel" resultMap="toChannel" parameterType="java.lang.Integer">
+    select c.Channel_id,c.Channel_title,c.Channel_desc
+    from channel_article ca,channel c
+    where ca.article_id = #{articleId,jdbcType=INTEGER}
+      and ca.Channel_id = c.Channel_id
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
