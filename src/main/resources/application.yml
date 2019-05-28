@@ -11,3 +11,6 @@ mybatis:
 #  config-location: classpath:mybatis_config.xml
 #  mybatis.config-location=classpath:mybatis/mybatis-config.xml
 #  mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
+logging:
+  level:
+    root: debug

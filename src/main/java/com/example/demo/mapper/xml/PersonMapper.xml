@@ -10,6 +10,25 @@
   <sql id="Base_Column_List" >
     person_id, person_name, person_pwd, role_name
   </sql>
+
+  <select id="insertAccess" resultType="java.lang.Integer" parameterType="java.util.List">
+    insert into person_access
+    (person_id,access_id)
+    values 
+    <foreach collection="accessList" item="item" index="index" separator=",">
+      (
+      #{personId,jdbcType=INTEGER},
+      #{item.accessId}
+      )
+    </foreach>
+  </select>
+
+  <select id="selectAllAccess" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select access_id
+    from person_access
+    where person_id = #{personID,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -20,7 +39,7 @@
     delete from person
     where person_id = #{personId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Person" >
+  <insert id="insert" parameterType="com.example.demo.entity.Person" useGeneratedKeys="true" keyProperty="personId">
     insert into person (person_id, person_name, person_pwd, 
       role_name)
     values (#{personId,jdbcType=INTEGER}, #{personName,jdbcType=VARCHAR}, #{personPwd,jdbcType=VARCHAR}, 
