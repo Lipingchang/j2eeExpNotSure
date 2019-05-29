@@ -24,6 +24,10 @@ public class PersonService {
         if ( strIsEmpty(newP.getPersonPwd() ) || newP.getPersonPwd().length()<4 ){
             throw new Exception("密码不符合要求");
         }
+        if ( personDao.selectByName(newP.getPersonName()) != null ){
+            throw new Exception("用户名已存在");
+        }
+
         // 默认设置为游客
         try {
             newP.setRoleName(Role.Visitor.name);

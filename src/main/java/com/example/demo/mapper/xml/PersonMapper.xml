@@ -10,7 +10,12 @@
   <sql id="Base_Column_List" >
     person_id, person_name, person_pwd, role_name
   </sql>
-
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from person
+    where person_name=#{personName,jdbcType=String}
+  </select>
   <select id="insertAccess" resultType="java.lang.Integer" parameterType="java.util.List">
     insert into person_access
     (person_id,access_id)
