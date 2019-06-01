@@ -31,6 +31,7 @@ public class PersonService {
         // 默认设置为游客
         try {
             newP.setRoleName(Role.Visitor.name);
+            newP.setAccesses(Arrays.asList(Role.Visitor.access));
             personDao.insert(newP);
             personDao.insertAccess(newP.getPersonId(), Arrays.asList(Role.Visitor.access));
         }catch (Exception e){
@@ -38,6 +39,5 @@ public class PersonService {
             throw new Exception("数据库错误");
         }
     }
-
 
 }

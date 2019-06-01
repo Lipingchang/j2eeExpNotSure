@@ -9,11 +9,11 @@ import javax.annotation.PostConstruct;
 @Component("Role")
 public class Role {
     public final static String[] names = {"管理员","编辑","质检员","游客" };
-    private static Access accessControl;
-    private static Access addArticleControl;
-    private static Access editorArticleControl;
-    private static Access deleteArticleControl;
-    private static Access readControl;
+    public static Access accessControl;
+    public static Access addArticleControl;
+    public static Access editorArticleControl;
+    public static Access deleteArticleControl;
+    public static Access readControl;
     private static Access[][] defaultAccess;
 
     public static Role Administrator;

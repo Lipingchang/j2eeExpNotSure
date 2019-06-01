@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
     private Integer personId;
 
@@ -8,6 +11,8 @@ public class Person {
     private String personPwd;
 
     private String roleName;
+
+    private List<Access> accesses = new ArrayList<>();
 
     public Integer getPersonId() {
         return personId;
@@ -39,5 +44,13 @@ public class Person {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
+    }
+
+    public List<Access> getAccesses() {
+        return accesses;
+    }
+
+    public void setAccesses(List<Access> accesses) {
+        this.accesses = accesses;
     }
 }
