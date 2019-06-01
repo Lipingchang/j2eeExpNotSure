@@ -19,4 +19,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<Channel> selectAllChannel(Integer articleId);
+
+    List<Article> selectAllArticle();
 }

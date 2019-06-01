@@ -16,6 +16,14 @@
     <result column="Channel_title" property="channelTitle" jdbcType="VARCHAR" />
     <result column="Channel_desc" property="channelDesc" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectAllArticle" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from article
+    where 1=1
+  </select>
+
   <select id="selectAllChannel" resultMap="toChannel" parameterType="java.lang.Integer">
     select c.Channel_id,c.Channel_title,c.Channel_desc
     from channel_article ca,channel c

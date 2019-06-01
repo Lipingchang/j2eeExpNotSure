@@ -6,6 +6,16 @@ spring:
     username: root
     password: zucc
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
 mybatis:
   mapper-locations: com/example/demo/mapper/xml/*.xml
 #  config-location: classpath:mybatis_config.xml
@@ -13,4 +23,7 @@ mybatis:
 #  mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
 logging:
   level:
-    root: debug
+    root: info
+    org.springframework:
+      data: DEBUG
+      security: DEBUG

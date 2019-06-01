@@ -23,12 +23,24 @@
     </foreach>
   </select>
 
-  <select id="selectAllAccess" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-    select access_id
-    from person_access
-    where person_id = #{personID,jdbcType=INTEGER}
+  <resultMap id="accessResultMap" type="com.example.demo.entity.Access" >
+    <id column="access_id" property="accessId" jdbcType="INTEGER" />
+    <result column="access_name" property="accessName" jdbcType="VARCHAR" />
+    <result column="access_decs" property="accessDecs" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectAllAccess" resultMap="accessResultMap" parameterType="java.lang.Integer">
+    select ac.access_id, access_name, access_decs
+    from person_access pa, access ac
+    where pa.person_id = #{personID,jdbcType=INTEGER} and pa.access_id=ac.access_id
   </select>
 
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from person
+    where person.person_name = #{name,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
