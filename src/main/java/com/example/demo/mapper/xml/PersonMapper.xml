@@ -10,13 +10,8 @@
   <sql id="Base_Column_List" >
     person_id, person_name, person_pwd, role_name
   </sql>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select
-    <include refid="Base_Column_List"/>
-    from person
-    where person_name=#{personName,jdbcType=String}
-  </select>
-  <select id="insertAccess" resultType="java.lang.Integer" parameterType="java.util.List">
+
+  <insert id="insertAccess"  parameterType="java.util.List">
     insert into person_access
     (person_id,access_id)
     values 
@@ -26,7 +21,12 @@
       #{item.accessId}
       )
     </foreach>
-  </select>
+  </insert>
+
+  <delete id="deleteAccess" parameterType="java.lang.Integer">
+    delete from person_access
+    where person_id = #{personId,jdbcType=INTEGER}
+  </delete>
 
   <resultMap id="accessResultMap" type="com.example.demo.entity.Access" >
     <id column="access_id" property="accessId" jdbcType="INTEGER" />

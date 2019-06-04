@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Access;
 import com.example.demo.entity.Person;
 import com.example.demo.entity.Role;
 import com.example.demo.mapper.PersonMapper;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.demo.util.Tools.strIsEmpty;
 
@@ -40,4 +43,24 @@ public class PersonService {
         }
     }
 
+    public void changePassword(int personID, String newpassword) throws Exception {
+        if (personID<=0 || strIsEmpty( newpassword ) ){
+            throw new Exception("参数不能空");
+        }
+        Person newp = new Person();
+        newp.setPersonId(personID);
+        newp.setPersonPwd(newpassword);
+        personDao.updateByPrimaryKeySelective(newp);
+    }
+
+    public void changeAccess(int personID, List<Integer> accessList){
+        List<Access> list = accessList.stream()
+                .filter(id -> (id < 1 || id > 6) )
+                .map( (id)->{ Access k = new Access(); k.setAccessId(id); return k;} )
+                .collect(Collectors.toList());
+        accessList.forEach(System.out::println);
+        personDao.deleteAccess(personID);
+        personDao.insertAccess(personID,list);
+
+    }
 }

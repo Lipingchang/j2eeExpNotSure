@@ -27,11 +27,12 @@ create table Access
    primary key (access_id)
 );
 
-insert into Access (access_name,access_decs) values ('人员管理','可以修改人员的Access属性');
-insert into Access (access_name,access_decs) values ('添加文章','可以添加文章');
-insert into Access (access_name,access_decs) values ('编辑文章','可以编辑已存在的文章');
-insert into Access (access_name,access_decs) values ('删除文章','可以删除已存在的文章');
-insert into Access (access_name,access_decs) values ('浏览文章','可以浏览文章内容');
+insert into Access (access_name,access_decs) values ('ROLE_人员管理','可以修改人员的Access属性');
+insert into Access (access_name,access_decs) values ('ROLE_添加文章','可以添加文章');
+insert into Access (access_name,access_decs) values ('ROLE_编辑文章','可以编辑已存在的文章');
+insert into Access (access_name,access_decs) values ('ROLE_删除文章','可以删除已存在的文章');
+insert into Access (access_name,access_decs) values ('ROLE_浏览文章','可以浏览文章内容');
+insert into Access (access_name,access_decs) values ('ROLE_管理栏目','可以处理栏目的所有的操作');
 
 /*==============================================================*/
 /* Table: Article                                               */

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer articleId);
+    int deleteByPrimaryKeyChannelRelate(Integer articleId);
 
     int insert(Article record);
 

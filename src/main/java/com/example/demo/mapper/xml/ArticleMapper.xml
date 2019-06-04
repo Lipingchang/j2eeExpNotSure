@@ -40,6 +40,10 @@
     delete from article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByPrimaryKeyChannelRelate" parameterType="java.lang.Integer">
+    delete from channel_article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.example.demo.entity.Article" >
     insert into article (article_id, person_id, article_title, 
       article_editor, article_content)

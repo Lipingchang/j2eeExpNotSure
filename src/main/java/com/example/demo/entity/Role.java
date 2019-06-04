@@ -14,6 +14,7 @@ public class Role {
     public static Access editorArticleControl;
     public static Access deleteArticleControl;
     public static Access readControl;
+    public static Access channelControl;
     private static Access[][] defaultAccess;
 
     public static Role Administrator;
@@ -31,8 +32,9 @@ public class Role {
         editorArticleControl = accessDao.selectByPrimaryKey(3);
         deleteArticleControl = accessDao.selectByPrimaryKey(4);
         readControl = accessDao.selectByPrimaryKey(5);
+        channelControl = accessDao.selectByPrimaryKey(6);
         defaultAccess = new Access[][]{
-                {accessControl},
+                {accessControl,channelControl},
                 {addArticleControl,editorArticleControl,deleteArticleControl,readControl},
                 {editorArticleControl,readControl},
                 {readControl}

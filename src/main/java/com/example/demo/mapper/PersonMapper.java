@@ -21,6 +21,7 @@ public interface PersonMapper {
     List<Access> selectAllAccess(int personId);
 
     Integer insertAccess(int personId, List<Access> accessList);  // 没有返回值 很奇怪
+    Integer deleteAccess(int personId);
 
     Person selectByName(String name);
 }
