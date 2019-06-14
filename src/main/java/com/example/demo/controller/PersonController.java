@@ -101,13 +101,19 @@ public class PersonController {
     @Secured("ROLE_人员管理")
     @PostMapping(Constant.URL_PERSON)
     @ResponseBody
-    public CommonResponseData updatePersonAccess(@RequestBody Map<String,Object> jsonMap){
+    public CommonResponseData updatePerson(@RequestBody Map<String,Object> jsonMap) throws Exception{
         List<Integer> accessList = (List<Integer>)jsonMap.get("accessList");
+        String rolename = (String)jsonMap.get("rolename");
         Integer userid = (Integer)jsonMap.get("userid");
-        personService.changeAccess(userid,accessList);
+        if ( userid == null )
+            throw new Exception("userid不能为空");
+
+        Person pp = personService.updatePerson(userid,rolename,accessList);
         CommonResponseData ret = new CommonResponseData();
         ret.setMsg("修改成功");
         ret.setStatusCode(200);
+        ret.setData(pp);
+
         return ret;
     }
 
