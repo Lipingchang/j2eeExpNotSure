@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -132,6 +133,17 @@ public class PersonController {
         ret.setData(rr);
         ret.setMsg("ok");
         ret.setStatusCode(200);
+        return ret;
+    }
+
+    @Secured("ROLE_人员管理")
+    @GetMapping(Constant.URL_PERSON)
+    @ResponseBody
+    public CommonResponseData selectAllPersons(){
+        CommonResponseData ret = new CommonResponseData();
+        ret.setData( personService.getAllPersons() );
+        ret.setStatusCode(200);
+        ret.setMsg("获取成功");
         return ret;
     }
 }

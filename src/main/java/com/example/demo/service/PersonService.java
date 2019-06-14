@@ -4,6 +4,7 @@ import com.example.demo.entity.Access;
 import com.example.demo.entity.Person;
 import com.example.demo.entity.Role;
 import com.example.demo.mapper.PersonMapper;
+import org.apache.tomcat.jni.Error;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,14 +54,41 @@ public class PersonService {
         personDao.updateByPrimaryKeySelective(newp);
     }
 
-    public void changeAccess(int personID, List<Integer> accessList){
+    @Transactional(rollbackFor = {Exception.class})
+    public void changeAccess(int personID, List<Integer> accessList) throws Exception{
         List<Access> list = accessList.stream()
-                .filter(id -> (id < 1 || id > 6) )
+                .filter(id -> ( 1<=id  && id <=6) )
                 .map( (id)->{ Access k = new Access(); k.setAccessId(id); return k;} )
                 .collect(Collectors.toList());
-        accessList.forEach(System.out::println);
+        list.forEach(System.out::println);
         personDao.deleteAccess(personID);
-        personDao.insertAccess(personID,list);
+        if ( list.size() != 0 )
+            personDao.insertAccess(personID,list);
+        else
+            throw new Exception("新的权限列表不合法");
 
+    }
+
+    public List<Person> getAllPersons(){
+        List<Person> ret = personDao.selectAllPerson();
+        for( Person pp : ret) {
+            pp.setPersonPwd(null);
+            pp.setAccesses( personDao.selectAllAccess(pp.getPersonId()) );
+        }
+        return ret;
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    public Person updatePerson(int personID,String roleName,List<Integer> accessList) throws Exception{
+        Person pp = new Person();
+        pp.setPersonId(personID);
+        pp.setRoleName(roleName);
+        personDao.updateByPrimaryKeySelective(pp);
+        if ( accessList!=null ){
+            changeAccess(personID,accessList);
+        }
+        pp = personDao.selectByPrimaryKey(personID);
+        pp.setAccesses(personDao.selectAllAccess(personID));
+        return pp;
     }
 }

@@ -27,3 +27,7 @@ logging:
     org.springframework:
       data: info
       security: info
+    com:
+      example:
+        demo:
+          mapper: debug

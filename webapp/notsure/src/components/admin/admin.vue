@@ -40,7 +40,11 @@ export default {
     data() {
       return {
       }
-    }
+    },
+    mounted() {
+      this.$router.push('/persons')
+
+    },
 }
 </script>
 

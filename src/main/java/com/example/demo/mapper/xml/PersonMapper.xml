@@ -39,6 +39,11 @@
     from person_access pa, access ac
     where pa.person_id = #{personID,jdbcType=INTEGER} and pa.access_id=ac.access_id
   </select>
+  <select id="selectAllPerson" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from person
+  </select>
 
   <select id="selectByName" resultMap="BaseResultMap">
     select

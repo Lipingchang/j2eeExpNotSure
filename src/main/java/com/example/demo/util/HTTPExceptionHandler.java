@@ -21,6 +21,9 @@ public class HTTPExceptionHandler {
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException ){
             retData.setStatusCode(404);
             response.setStatus(404);
+        } else if ( e instanceof org.springframework.security.access.AccessDeniedException){
+            retData.setStatusCode(401);
+            response.setStatus(401);
         }else{
             retData.setStatusCode(500);
             response.setStatus(500);
