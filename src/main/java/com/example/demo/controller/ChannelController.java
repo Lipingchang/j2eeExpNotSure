@@ -66,7 +66,11 @@ public class ChannelController {
     @GetMapping(Constant.URL_CHANNEL)
     @ResponseBody
     public CommonResponseData getChannels(){
-
+        CommonResponseData ret = new CommonResponseData();
+        ret.setMsg("success");
+        ret.setStatusCode(200);
+        ret.setData(channelService.getAllChannels());
+        return ret;
     }
 
 }

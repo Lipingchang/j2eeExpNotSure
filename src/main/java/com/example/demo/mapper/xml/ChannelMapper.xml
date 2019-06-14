@@ -15,6 +15,11 @@
     from channel
     where Channel_id = #{channelId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from channel
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from channel
     where Channel_id = #{channelId,jdbcType=INTEGER}
