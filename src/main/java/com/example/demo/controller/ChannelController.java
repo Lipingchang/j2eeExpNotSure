@@ -7,10 +7,7 @@ import com.example.demo.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -65,5 +62,11 @@ public class ChannelController {
         return ret;
     }
 
+    @Secured("ROLE_管理栏目")
+    @GetMapping(Constant.URL_CHANNEL)
+    @ResponseBody
+    public CommonResponseData getChannels(){
+
+    }
 
 }
