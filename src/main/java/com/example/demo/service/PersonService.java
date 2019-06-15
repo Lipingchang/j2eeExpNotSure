@@ -64,8 +64,8 @@ public class PersonService {
         personDao.deleteAccess(personID);
         if ( list.size() != 0 )
             personDao.insertAccess(personID,list);
-        else
-            throw new Exception("新的权限列表不合法");
+//        else
+//            throw new Exception("新的权限列表不合法"); // 没有权限的情况
 
     }
 
