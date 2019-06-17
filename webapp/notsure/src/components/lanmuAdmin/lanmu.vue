@@ -117,6 +117,9 @@ export default {
 </script>
 
 <style scoped>
+ul {
+    padding: 0px;
+}
 .diviv {
     margin: 5px;
 }
