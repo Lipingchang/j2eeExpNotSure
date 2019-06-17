@@ -24,7 +24,7 @@
     delete from channel
     where Channel_id = #{channelId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Channel" >
+  <insert id="insert" parameterType="com.example.demo.entity.Channel" useGeneratedKeys="true" keyProperty="channelId" >
     insert into channel (Channel_id, Channel_title, Channel_desc
       )
     values (#{channelId,jdbcType=INTEGER}, #{channelTitle,jdbcType=VARCHAR}, #{channelDesc,jdbcType=VARCHAR}

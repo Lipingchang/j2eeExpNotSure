@@ -24,4 +24,5 @@ public interface PersonMapper {
     Integer deleteAccess(int personId);
 
     Person selectByName(String name);
+    List<Person> selectAllPerson();
 }

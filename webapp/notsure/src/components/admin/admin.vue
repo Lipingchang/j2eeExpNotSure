@@ -73,7 +73,11 @@ export default {
         }
         return false
       }
-    }
+    },
+    mounted() {
+      this.$router.push('/persons')
+
+    },
 }
 </script>
 
