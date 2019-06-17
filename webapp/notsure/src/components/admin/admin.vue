@@ -15,8 +15,9 @@
         </router-link>
       </el-submenu>
       <el-submenu index="2" v-if="hasAuthority('articleAdmin')">
-        <template slot="title"><i class="el-icon-files"></i>文章管理</template>
-        <router-link to="/articles"><el-menu-item index="2-1">文章管理</el-menu-item></router-link>
+        <template slot="title"><i class="el-icon-files"></i>文章</template>
+        <router-link to="/articleadmin"  v-if="hasAuthority('articleAdmin')"><el-menu-item index="2-1">文章管理</el-menu-item></router-link>
+        <router-link to="/articleviewer"  v-if="hasAuthority('articleViewer')"><el-menu-item index="2-2">文章浏览</el-menu-item></router-link>
       </el-submenu>
       <el-submenu index="3" v-if="hasAuthority('personAdmin')">
         <template slot="title"><i class="el-icon-user"></i>人员管理</template>
@@ -49,6 +50,9 @@ export default {
             'ROLE_编辑文章',
             'ROLE_添加文章'
           ],
+          'articleViewer': [
+            'ROLE_浏览文章',
+          ],
           'personAdmin': [
             'ROLE_人员管理'
           ]
@@ -73,11 +77,7 @@ export default {
         }
         return false
       }
-    },
-    mounted() {
-      this.$router.push('/persons')
-
-    },
+    }
 }
 </script>
 
