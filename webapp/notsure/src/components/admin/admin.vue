@@ -14,9 +14,10 @@
           <el-menu-item index="1-1">栏目管理</el-menu-item>
         </router-link>
       </el-submenu>
-      <el-submenu index="2" v-if="hasAuthority('articleAdmin')">
-        <template slot="title"><i class="el-icon-files"></i>文章管理</template>
-        <router-link to="/articles"><el-menu-item index="2-1">文章管理</el-menu-item></router-link>
+      <el-submenu index="2" v-if="hasAuthority('articleViewer')">
+        <template slot="title"><i class="el-icon-files"></i>文章</template>
+        <router-link to="/articleadmin" index="2-1" v-if="hasAuthority('articleAdmin')"><el-menu-item index="2-1">文章管理</el-menu-item></router-link>
+        <router-link to="/articleviewer" index="2-2" v-if="hasAuthority('articleViewer')"><el-menu-item index="2-2">文章浏览</el-menu-item></router-link>
       </el-submenu>
       <el-submenu index="3" v-if="hasAuthority('personAdmin')">
         <template slot="title"><i class="el-icon-user"></i>人员管理</template>
@@ -54,24 +55,49 @@ export default {
           ]
         },
         subMenus: {
-          'channels': '1-1',
-          'articles': '2-1',
-          'persons': '3-1'
+          'channelAdmin': '1-1',
+          'articleAdmin': '2-1',
+          'articleViewer': '2-2',
+          'personAdmin': '3-1'
+        },
+        subMenus2: {
+          'channelAdmin': 'channels',
+          'articleAdmin': 'articleadmin',
+          'articleViewer': 'articleviewer',
+          'personAdmin': 'persons'
         },
         defaultSubMenue: 'channels'
       }
     },
     mounted: function (){
-      this.$router.replace( '/' + this.defaultSubMenue )
+      for( let name in this.auths ){
+        if ( this.hasAuthority(name) ){
+          this.defaultSubMenue = name
+          this.$router.replace(  '/' + this.subMenus2[name] )
+          return
+        }
+      }
     },
     methods: {
       hasAuthority: function ( menueName ){
+        // console.log('menue name:', menueName )
+        let ret = true
         let userAuth = this.$store.state.userinfo.authorities
+        let hadauth = []
         for( let i in userAuth ){
-          if ( this.auths[menueName].includes(userAuth[i]['authority']) )
-            return true
+          hadauth.push( userAuth[i]['authority'])
         }
-        return false
+        console.log(hadauth)
+        for( let needAuth in this.auths[menueName] ){
+          console.log( needAuth)
+          ret = ret && hadauth.includes(this.auths[menueName][needAuth])
+        }
+        // for( let i in userAuth ){
+        //   console.log( this.auths[menueName], userAuth[i]['authority'])
+        //   ret = ret && this.auths[menueName].includes(userAuth[i]['authority']) 
+        
+        // }
+        return ret
       }
     }
 }
