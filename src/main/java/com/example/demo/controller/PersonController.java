@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -101,13 +102,19 @@ public class PersonController {
     @Secured("ROLE_人员管理")
     @PostMapping(Constant.URL_PERSON)
     @ResponseBody
-    public CommonResponseData updatePersonAccess(@RequestBody Map<String,Object> jsonMap){
+    public CommonResponseData updatePerson(@RequestBody Map<String,Object> jsonMap) throws Exception{
         List<Integer> accessList = (List<Integer>)jsonMap.get("accessList");
+        String rolename = (String)jsonMap.get("rolename");
         Integer userid = (Integer)jsonMap.get("userid");
-        personService.changeAccess(userid,accessList);
+        if ( userid == null )
+            throw new Exception("userid不能为空");
+
+        Person pp = personService.updatePerson(userid,rolename,accessList);
         CommonResponseData ret = new CommonResponseData();
         ret.setMsg("修改成功");
         ret.setStatusCode(200);
+        ret.setData(pp);
+
         return ret;
     }
 
@@ -126,6 +133,17 @@ public class PersonController {
         ret.setData(rr);
         ret.setMsg("ok");
         ret.setStatusCode(200);
+        return ret;
+    }
+
+    @Secured("ROLE_人员管理")
+    @GetMapping(Constant.URL_PERSON)
+    @ResponseBody
+    public CommonResponseData selectAllPersons(){
+        CommonResponseData ret = new CommonResponseData();
+        ret.setData( personService.getAllPersons() );
+        ret.setStatusCode(200);
+        ret.setMsg("获取成功");
         return ret;
     }
 }

@@ -62,7 +62,7 @@ public class ChannelController {
         return ret;
     }
 
-    @Secured("ROLE_管理栏目")
+    @Secured("ROLE_浏览文章")
     @GetMapping(Constant.URL_CHANNEL)
     @ResponseBody
     public CommonResponseData getChannels(){

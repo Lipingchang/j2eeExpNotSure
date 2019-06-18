@@ -50,6 +50,9 @@ export default {
             'ROLE_编辑文章',
             'ROLE_添加文章'
           ],
+          'articleViewer': [
+            'ROLE_浏览文章',
+          ],
           'personAdmin': [
             'ROLE_人员管理'
           ]

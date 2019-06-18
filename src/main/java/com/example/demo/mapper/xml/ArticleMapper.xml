@@ -23,6 +23,12 @@
     from article
     where 1=1
   </select>
+  <select id="selectAllArticleWithOutContent" resultType="Map">
+    select
+    art.article_id,per.person_name,art.article_title,art.article_editor
+    from article art,person per
+    where art.person_id=per.person_id
+  </select>
 
   <select id="selectAllChannel" resultMap="toChannel" parameterType="java.lang.Integer">
     select c.Channel_id,c.Channel_title,c.Channel_desc
@@ -40,15 +46,30 @@
     delete from article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteAllChannels" parameterType="java.lang.Integer">
+    delete from channel_article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByPrimaryKeyChannelRelate" parameterType="java.lang.Integer">
     delete from channel_article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Article" >
+  <insert id="insert" parameterType="com.example.demo.entity.Article" useGeneratedKeys="true" keyProperty="articleId"  >
     insert into article (article_id, person_id, article_title, 
       article_editor, article_content)
     values (#{articleId,jdbcType=INTEGER}, #{personId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, 
       #{articleEditor,jdbcType=VARCHAR}, #{articleContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertChannelId"  parameterType="java.util.List">
+    insert into channel_article
+    (Channel_id,article_id)
+    values
+    <foreach collection="channelIds" item="item" index="index" separator=",">
+      (
+      #{item,jdbcType=INTEGER},
+      #{articleId,jdbcType=INTEGER}
+      )
+    </foreach>
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.entity.Article" >
     insert into article
