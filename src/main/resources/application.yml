@@ -25,5 +25,9 @@ logging:
   level:
     root: info
     org.springframework:
-      data: DEBUG
-      security: DEBUG
+      data: info
+      security: info
+    com:
+      example:
+        demo:
+          mapper: debug

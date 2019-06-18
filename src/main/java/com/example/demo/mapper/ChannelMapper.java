@@ -2,6 +2,8 @@ package com.example.demo.mapper;
 
 import com.example.demo.entity.Channel;
 
+import java.util.List;
+
 public interface ChannelMapper {
     int deleteByPrimaryKey(Integer channelId);
 
@@ -14,4 +16,6 @@ public interface ChannelMapper {
     int updateByPrimaryKeySelective(Channel record);
 
     int updateByPrimaryKey(Channel record);
+
+    List<Channel> selectAll();
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Controller
@@ -45,10 +46,38 @@ public class ArticleController {
     @Secured("ROLE_添加文章")
     @PostMapping(Constant.URL_ARTICLE)
     @ResponseBody
-    public CommonResponseData addArticles(Article newart){
+    public CommonResponseData addArticles(@RequestBody Map<String,Object> jsonMap){
+        Article newart = new Article();
+        newart.setArticleTitle((String)jsonMap.get("title"));
+        newart.setArticleEditor((String)jsonMap.get("editorName"));
+        newart.setArticleContent((String)jsonMap.get("content"));
+        newart.setPersonId((Integer)jsonMap.get("personId"));
+        List<Integer> channelIds = (List<Integer>)jsonMap.get("channelIds");
+
         CommonResponseData ret = new CommonResponseData();
-        ret.setData(articleService.addArticles(newart));
+        ret.setData(articleService.addArticles(newart,channelIds));
         ret.setMsg("添加成功");
+        ret.setStatusCode(200);
+        return ret;
+    }
+
+    @Secured("ROLE_编辑文章")
+    @PatchMapping(Constant.URL_ARTICLE)
+    @ResponseBody
+    public CommonResponseData changeArticles(@RequestBody Map<String,Object> jsonMap){
+
+        Article newart = new Article();
+        newart.setArticleTitle((String)jsonMap.get("title"));
+        newart.setArticleEditor((String)jsonMap.get("editorName"));
+        newart.setArticleContent((String)jsonMap.get("content"));
+        newart.setPersonId((Integer)jsonMap.get("personId"));
+        newart.setArticleId((Integer)jsonMap.get("changeArticleId"));
+        List<Integer> channelIds = (List<Integer>)jsonMap.get("channelIds");
+
+        CommonResponseData ret = new CommonResponseData();
+        articleService.updateArticle(newart,channelIds);
+//        ret.setData(articleService.addArticles(newart,channelIds));
+        ret.setMsg("修改成功");
         ret.setStatusCode(200);
         return ret;
     }

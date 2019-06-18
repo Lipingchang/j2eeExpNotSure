@@ -5,6 +5,8 @@ import com.example.demo.mapper.ChannelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChannelService {
     @Autowired
@@ -20,5 +22,9 @@ public class ChannelService {
 
     public void removeChannel(int id) throws Exception{
         channelMapper.deleteByPrimaryKey(id);
+    }
+
+    public List<Channel> getAllChannels() {
+        return channelMapper.selectAll();
     }
 }

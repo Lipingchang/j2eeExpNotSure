@@ -15,11 +15,16 @@
     from channel
     where Channel_id = #{channelId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from channel
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from channel
     where Channel_id = #{channelId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.entity.Channel" >
+  <insert id="insert" parameterType="com.example.demo.entity.Channel" useGeneratedKeys="true" keyProperty="channelId" >
     insert into channel (Channel_id, Channel_title, Channel_desc
       )
     values (#{channelId,jdbcType=INTEGER}, #{channelTitle,jdbcType=VARCHAR}, #{channelDesc,jdbcType=VARCHAR}
